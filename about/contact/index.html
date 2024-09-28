@@ -233,23 +233,60 @@ a, .content-left .entry-meta p, .sticky-post-content .entry-title a, .sticky-pos
 <p>The number 50 bus goes frequently from Moor Street Station to Balsall Heath. Get off at the stop opposite Moseley Road Baths and Library. See <a href="http://nxbus.co.uk/west-midlands/" target="_blank" rel="noopener">National Express West Midlands</a> for travel information.</p>
 <p> </p>
 
-<div class="wpforms-container wpforms-container-full wpforms-block wpforms-block-e143bb0a-cfd5-4ead-86ef-cff38fca3b23 wpforms-render-modern" id="wpforms-20019"><form id="wpforms-form-20019" class="wpforms-validate wpforms-form wpforms-ajax-form" data-formid="20019" method="post" enctype="multipart/form-data" action="/about/contact/" data-token="b2be1cc032fc149ca1b6e6a3008d6c8c" data-token-time="1726518357"><noscript class="wpforms-error-noscript">Please enable JavaScript in your browser to complete this form.</noscript><div class="wpforms-hidden" id="wpforms-error-noscript">Please enable JavaScript in your browser to complete this form.</div><div class="wpforms-field-container">		<div id="wpforms-20019-field_4-container"
-			class="wpforms-field wpforms-field-text"
-			data-field-type="text"
-			data-field-id="4"
-			>
-			<label class="wpforms-field-label" for="wpforms-20019-field_4" >Name touch are</label>
-			<input type="text" id="wpforms-20019-field_4" class="wpforms-field-medium" name="wpforms[fields][4]" >
-		</div>
-		<div id="wpforms-20019-field_1-container" class="wpforms-field wpforms-field-name" data-field-id="1"><fieldset><legend class="wpforms-field-label">Name <span class="wpforms-required-label" aria-hidden="true">*</span></legend><div class="wpforms-field-row wpforms-field-medium"><div class="wpforms-field-row-block wpforms-first wpforms-one-half"><input type="text" id="wpforms-20019-field_1" class="wpforms-field-name-first wpforms-field-required" name="wpforms[fields][1][first]" aria-errormessage="wpforms-20019-field_1-error" required><label for="wpforms-20019-field_1" class="wpforms-field-sublabel after">First</label></div><div class="wpforms-field-row-block wpforms-one-half"><input type="text" id="wpforms-20019-field_1-last" class="wpforms-field-name-last wpforms-field-required" name="wpforms[fields][1][last]" aria-errormessage="wpforms-20019-field_1-last-error" required><label for="wpforms-20019-field_1-last" class="wpforms-field-sublabel after">Last</label></div></div></fieldset></div><div id="wpforms-20019-field_2-container" class="wpforms-field wpforms-field-email" data-field-id="2"><label class="wpforms-field-label" for="wpforms-20019-field_2">Email <span class="wpforms-required-label" aria-hidden="true">*</span></label><input type="email" id="wpforms-20019-field_2" class="wpforms-field-medium wpforms-field-required" name="wpforms[fields][2]" spellcheck="false" aria-errormessage="wpforms-20019-field_2-error" required></div><div id="wpforms-20019-field_3-container" class="wpforms-field wpforms-field-textarea" data-field-id="3"><label class="wpforms-field-label" for="wpforms-20019-field_3">Tell us why you are getting in touch</label><textarea id="wpforms-20019-field_3" class="wpforms-field-medium" name="wpforms[fields][3]" aria-errormessage="wpforms-20019-field_3-error" ></textarea></div><script>
-				( function() {
-					const style = document.createElement( 'style' );
+<div class="wpforms-container wpforms-container-full wpforms-block wpforms-block-e143bb0a-cfd5-4ead-86ef-cff38fca3b23 wpforms-render-modern" id="wpforms-20019">
 
-					style.appendChild( document.createTextNode( '#wpforms-20019-field_4-container { position: absolute !important; overflow: hidden !important; display: inline !important; height: 1px !important; width: 1px !important; z-index: -1000 !important; padding: 0 !important; input { visibility: hidden; } }' ) );
-					document.head.appendChild( style );
-					document.currentScript?.remove();
-				} )();
-			</script></div><!-- .wpforms-field-container --><div class="wpforms-submit-container" ><input type="hidden" name="wpforms[id]" value="20019"><input type="hidden" name="page_title" value="contact us"><input type="hidden" name="page_url" value="https://zerocarbonhousebirmingham.org.uk/about/contact/"><input type="hidden" name="page_id" value="481"><input type="hidden" name="wpforms[post_id]" value="481"><button type="submit" name="wpforms[submit]" id="wpforms-submit-20019" class="wpforms-submit" data-alt-text="Sending…" data-submit-text="Submit" aria-live="assertive" value="wpforms-submit">Submit</button><img decoding="async" src="https://zerocarbonhousebirmingham.org.uk/wp-content/plugins/wpforms-lite/assets/images/submit-spin.svg" class="wpforms-submit-spinner" style="display: none;" width="26" height="26" alt="Loading"></div></form></div>  <!-- .wpforms-container -->			</div><!-- .entry-content -->
+	<!-- modify this form HTML and place wherever you want your form -->
+<form id="my-form" action="https://formspree.io/f/xkgwdrpe" method="POST">
+	<label>First name:</label>
+	<input type="text" name="first" />
+	<label>Last name:</label>
+	<input type="text" name="last" />
+	<label>Email:</label>
+	<input type="email" name="email" required />
+	<label>Email:</label>
+	<input type="email" name="email" />
+	<label>Tell us why you are getting in touch:</label>
+	<input type="text" name="message" />
+	<button id="my-form-button">Send</button>
+	<p id="my-form-status"></p>
+  </form>
+  
+  <!-- Place this script at the end of the body tag -->
+  <script>
+	var form = document.getElementById("my-form");
+	
+	async function handleSubmit(event) {
+	  event.preventDefault();
+	  var status = document.getElementById("my-form-status");
+	  var data = new FormData(event.target);
+	  fetch(event.target.action, {
+		method: form.method,
+		body: data,
+		headers: {
+			'Accept': 'application/json'
+		}
+	  }).then(response => {
+		if (response.ok) {
+		  status.innerHTML = "Thanks for your submission!";
+		  form.reset()
+		} else {
+		  response.json().then(data => {
+			if (Object.hasOwn(data, 'errors')) {
+			  status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
+			} else {
+			  status.innerHTML = "Oops! There was a problem submitting your form"
+			}
+		  })
+		}
+	  }).catch(error => {
+		status.innerHTML = "Oops! There was a problem submitting your form"
+	  });
+	}
+	form.addEventListener("submit", handleSubmit)
+  </script>
+
+
+</div>  <!-- .wpforms-container -->			</div><!-- .entry-content -->
 </article><!-- #post-481 -->
 
 	
